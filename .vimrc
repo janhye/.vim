@@ -7,3 +7,4 @@ set background=dark nocompatible
 
 let mapleader=","
 nmap <leader>f :CommandT<CR>
+
