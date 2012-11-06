@@ -1,7 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/yjh/iOS/LotMindMap/LotMindMap'
-let g:netrw_dirhist_2='/Users/yjh/tmp/LayerDemo'
-let g:netrw_dirhist_3='/Users/yjh/tmp/LayerDemo/LayerDemo'
-let g:netrw_dirhist_4='/Users/yjh/tmp/LayerDemo'
-let g:netrw_dirhist_5='/Users/yjh/tmp/LayerDemo/LayerDemo'
+let g:netrw_dirhist_cnt =0
