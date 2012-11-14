@@ -50,7 +50,9 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                      \ exe "normal g'\"" | endif
 
 
-set nocompatible             " 关闭兼容模式
+set nocompatible             " Disable vi-compatibility
+set laststatus=2             " Always show the statusline
+set encoding=utf-8           " Necessary to show Unicode glyphs
 set hidden                   " 允许在有未保存的修改时切换缓冲区
 set backspace=2              " 设置退格键可用
 set tabstop=2                " 设置Tab键的宽度        [等同的空格个数]
@@ -62,3 +64,14 @@ set shiftwidth=2             " 换行时行间交错使用2空格
 set cindent shiftwidth=2     " 自动缩进2空格
 set writebackup              " 设置无备份文件
 set nobackup
+set synmaxcol=128            " Syntax coloring lines that are too long just slows down the world
+set ttyfast                  " u got a fast terminal
+set ttyscroll=3
+set lazyredraw               " to avoid scrolling problems
+
+"powerline{
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+set t_Co=256
+"let g:Powerline_symbols = 'fancy'
+"}
