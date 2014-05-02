@@ -39,6 +39,10 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 Helptags
 
+filetype on
+filetype plugin on
+filetype indent on
+
 syntax on
 set background=dark nocompatible
 
@@ -62,11 +66,10 @@ set hidden                   " 允许在有未保存的修改时切换缓冲区
 set backspace=2              " 设置退格键可用
 set tabstop=2                " 设置Tab键的宽度        [等同的空格个数]
 set expandtab                " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-set autoindent               " 自动对齐
-set ai!                      " 设置自动缩进
-set smartindent              " 智能自动缩进
 set shiftwidth=2             " 换行时行间交错使用2空格
 set cindent shiftwidth=2     " 自动缩进2空格
+set autoindent               " 自动对齐
+set smartindent              " 智能自动缩进
 set writebackup              " 设置无备份文件
 set nobackup
 set synmaxcol=188            " Syntax coloring lines that are too long just slows down the world
