@@ -35,7 +35,7 @@ if has("win32")
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-let g:pathogen_disabled = ['clang_complete']
+let g:pathogen_disabled = ['clang_complete', 'cocoa']
 call pathogen#infect()
 Helptags
 
@@ -44,30 +44,36 @@ set background=dark nocompatible
 
 let mapleader=","
 nmap <leader>f :CommandT<CR>
+nmap <leader>t :NERDTree<CR>
 
 "configure Vim to open a file at the last edited location
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                      \ exe "normal g'\"" | endif
 
+" configure Commentary
+autocmd FileType objc set commentstring=//\ %s
+autocmd FileType objcpp set commentstring=//\ %s
+autocmd FileType ruby set commentstring=#\ %s
 
 set nocompatible             " Disable vi-compatibility
 set laststatus=2             " Always show the statusline
 set encoding=utf-8           " Necessary to show Unicode glyphs
 set hidden                   " 允许在有未保存的修改时切换缓冲区
 set backspace=2              " 设置退格键可用
-set tabstop=2                " 设置Tab键的宽度        [等同的空格个数]
+set tabstop=4                " 设置Tab键的宽度        [等同的空格个数]
 set expandtab                " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
-set shiftwidth=2             " 换行时行间交错使用2空格
-set cindent shiftwidth=2     " 自动缩进2空格
+set shiftwidth=4             " 换行时行间交错使用2空格
+set cindent shiftwidth=4     " 自动缩进2空格
 set writebackup              " 设置无备份文件
 set nobackup
-set synmaxcol=128            " Syntax coloring lines that are too long just slows down the world
+set synmaxcol=188            " Syntax coloring lines that are too long just slows down the world
 set ttyfast                  " u got a fast terminal
 set ttyscroll=3
 set lazyredraw               " to avoid scrolling problems
+set hlsearch                 " highlight all search matches
 
 "powerline{
 "set guifont=PowerlineSymbols\ for\ Powerline
@@ -75,3 +81,10 @@ set lazyredraw               " to avoid scrolling problems
 set t_Co=256
 "let g:Powerline_symbols = 'fancy'
 "}
+
+" Objective-C settings
+" Jump to interface or implementation
+"nnoremap <leader>i :silent execute "grep! -R " . shellescape("^[+-]\\+[[:space:]]*([[:alnum:][:space:]\\*]\\+)[[:space:]]*\\<" . expand("<cword>") . "\\>\\\\|^@interface[[:space:]]\\+\\<" . expand("<cword>") . "\\>\\\\|^@implementation[[:space:]]\\+\\<" . expand("<cword>") . "\\>") . " ."<cr>:cw<cr>
+nnoremap <silent> <leader>d :grep! -R "^[+-]\+[[:space:]]*([[:alnum:][:space:]\*]\+)[[:space:]]*\<<cword>\>\\\\|^@interface[[:space:]]\+\<<cword>\>\\\\|^@implementation[[:space:]]\+\<<cword>\>\\\\|^@protocol[[:space:]]\+\<<cword>\>\\\\|^@property.*[[:space:]*]\+\<<cword>\>[[:space:]]*;\\\\|^\#define[[:space:]]\+\<<cword>\>" .<CR>:cw<CR>
+" Grep current word
+nnoremap <leader>g :silent execute "grep! -R " . shellescape("\\<" . expand("<cword>") . "\\>") . " ."<cr>:cw<cr>
