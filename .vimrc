@@ -1,41 +1,5 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => For Windows Version
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 下面的内容是 Windows 版的 vim 安装完成后就自动生成的代码，为了在扩平台的目标下
-" 保证完整性，最好作如下的处理
-if has("win32")
-  source $VIMRUNTIME/vimrc_example.vim
-  source $VIMRUNTIME/mswin.vim
-  behave mswin
-
-  set diffexpr=MyDiff()
-  function MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    let eq = ''
-    if $VIMRUNTIME =~ ' '
-      if &sh =~ '\<cmd'
-        let cmd = '""' . $VIMRUNTIME . '\diff"'
-        let eq = '"'
-      else
-        let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-      endif
-    else
-      let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-  endfunction
-endif
-
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-"let g:pathogen_disabled = ['clang_complete', 'cocoa']
+" let g:pathogen_disabled = ['vim-airline']
 execute pathogen#infect()
 
 filetype on
@@ -52,11 +16,6 @@ nmap <leader>t :NERDTree<CR>
 "configure Vim to open a file at the last edited location
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                      \ exe "normal g'\"" | endif
-
-" configure Commentary
-autocmd FileType objc set commentstring=//\ %s
-autocmd FileType objcpp set commentstring=//\ %s
-autocmd FileType ruby set commentstring=#\ %s
 
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
@@ -82,9 +41,6 @@ set hlsearch                 " highlight all search matches
 set guioptions-=r
 set guioptions-=L
 
-"powerline{
-"set guifont=PowerlineSymbols\ for\ Powerline
-"set nocompatible
-set t_Co=256
-"let g:Powerline_symbols = 'fancy'
-"}
+if has("statusline")
+ set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+endif
