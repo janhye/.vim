@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => For Windows Version
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ÏÂÃæµÄÄÚÈİÊÇ Windows °æµÄ vim °²×°Íê³Éºó¾Í×Ô¶¯Éú³ÉµÄ´úÂë£¬ÎªÁËÔÚÀ©Æ½Ì¨µÄÄ¿±êÏÂ
-" ±£Ö¤ÍêÕûĞÔ£¬×îºÃ×÷ÈçÏÂµÄ´¦Àí
+" ä¸‹é¢çš„å†…å®¹æ˜¯ Windows ç‰ˆçš„ vim å®‰è£…å®Œæˆåå°±è‡ªåŠ¨ç”Ÿæˆçš„ä»£ç ï¼Œä¸ºäº†åœ¨æ‰©å¹³å°çš„ç›®æ ‡ä¸‹
+" ä¿è¯å®Œæ•´æ€§ï¼Œæœ€å¥½ä½œå¦‚ä¸‹çš„å¤„ç†
 if has("win32")
   source $VIMRUNTIME/vimrc_example.vim
   source $VIMRUNTIME/mswin.vim
@@ -36,8 +36,7 @@ endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 "let g:pathogen_disabled = ['clang_complete', 'cocoa']
-call pathogen#infect()
-Helptags
+execute pathogen#infect()
 
 filetype on
 filetype plugin on
@@ -59,24 +58,29 @@ autocmd FileType objc set commentstring=//\ %s
 autocmd FileType objcpp set commentstring=//\ %s
 autocmd FileType ruby set commentstring=#\ %s
 
+let &termencoding=&encoding
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+
 set nocompatible             " Disable vi-compatibility
 set laststatus=2             " Always show the statusline
 set encoding=utf-8           " Necessary to show Unicode glyphs
-set hidden                   " ÔÊĞíÔÚÓĞÎ´±£´æµÄĞŞ¸ÄÊ±ÇĞ»»»º³åÇø
-set backspace=2              " ÉèÖÃÍË¸ñ¼ü¿ÉÓÃ
-set tabstop=2                " ÉèÖÃTab¼üµÄ¿í¶È        [µÈÍ¬µÄ¿Õ¸ñ¸öÊı]
-set expandtab                " ½«Tab×Ô¶¯×ª»¯³É¿Õ¸ñ    [ĞèÒªÊäÈëÕæÕıµÄTab¼üÊ±£¬Ê¹ÓÃ Ctrl+V + Tab]
-set shiftwidth=2             " »»ĞĞÊ±ĞĞ¼ä½»´íÊ¹ÓÃ2¿Õ¸ñ
-set cindent shiftwidth=2     " ×Ô¶¯Ëõ½ø2¿Õ¸ñ
-set autoindent               " ×Ô¶¯¶ÔÆë
-set smartindent              " ÖÇÄÜ×Ô¶¯Ëõ½ø
-set writebackup              " ÉèÖÃÎŞ±¸·İÎÄ¼ş
+set hidden                   " å…è®¸åœ¨æœ‰æœªä¿å­˜çš„ä¿®æ”¹æ—¶åˆ‡æ¢ç¼“å†²åŒº
+set backspace=2              " è®¾ç½®é€€æ ¼é”®å¯ç”¨
+set tabstop=2                " è®¾ç½®Tabé”®çš„å®½åº¦        [ç­‰åŒçš„ç©ºæ ¼ä¸ªæ•°]
+set expandtab                " å°†Tabè‡ªåŠ¨è½¬åŒ–æˆç©ºæ ¼    [éœ€è¦è¾“å…¥çœŸæ­£çš„Tabé”®æ—¶ï¼Œä½¿ç”¨ Ctrl+V + Tab]
+set shiftwidth=2             " æ¢è¡Œæ—¶è¡Œé—´äº¤é”™ä½¿ç”¨2ç©ºæ ¼
+set cindent shiftwidth=2     " è‡ªåŠ¨ç¼©è¿›2ç©ºæ ¼
+set autoindent               " è‡ªåŠ¨å¯¹é½
+set smartindent              " æ™ºèƒ½è‡ªåŠ¨ç¼©è¿›
+set writebackup              " è®¾ç½®æ— å¤‡ä»½æ–‡ä»¶
 set nobackup
 set synmaxcol=188            " Syntax coloring lines that are too long just slows down the world
 set ttyfast                  " u got a fast terminal
 set ttyscroll=3
 set lazyredraw               " to avoid scrolling problems
 set hlsearch                 " highlight all search matches
+set guioptions-=r
+set guioptions-=L
 
 "powerline{
 "set guifont=PowerlineSymbols\ for\ Powerline

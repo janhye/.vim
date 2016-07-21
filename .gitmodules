@@ -30,4 +30,4 @@
 	url = git://github.com/tpope/vim-commentary.git
 [submodule "bundle/command-t"]
 	path = bundle/command-t
-	url = git://git.wincent.com/command-t.git
+	url = https://github.com/wincent/command-t.git
